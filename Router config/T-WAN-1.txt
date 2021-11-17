@@ -1,0 +1,127 @@
+T-WAN-1(config)#do wr
+Building configuration...
+[OK]
+T-WAN-1(config)#
+*Nov 17 14:51:45.617: %GRUB-5-CONFIG_WRITING: GRUB configuration is being updated on disk. Please wait...
+*Nov 17 14:51:46.416: %GRUB-5-CONFIG_WRITTEN: GRUB configuration was written to disk successfully.
+T-WAN-1(config)#
+T-WAN-1(config)#
+T-WAN-1(config)#do sh run
+Building configuration...
+
+Current configuration : 1508 bytes
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname T-WAN-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+no ip icmp rate-limit unreachable
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+redundancy
+!
+no cdp log mismatch duplex
+!
+ip tcp synwait-time 5
+!
+!
+!
+!
+interface Loopback9
+ ip address 1.1.1.1 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description Link to FISH-1 Gi0/2
+ ip address 10.40.1.1 255.255.255.252
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router bgp 5000
+ bgp log-neighbor-changes
+ neighbor 10.90.1.1 remote-as 100
+ neighbor 10.90.1.1 ebgp-multihop 2
+ neighbor 10.90.1.1 update-source Loopback9
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+ip route 10.90.1.1 255.255.255.255 GigabitEthernet0/0
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end
