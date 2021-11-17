@@ -7,7 +7,7 @@
 4. Create redundancy between devices under AS5000  
 5. Add more services above AS4896 e.g. netbox, automation, syslog etc.
 
-GNS3 Lab
+### GNS3 Lab setup
 
 Devices:
 6x Cisco IOSv as WAN routers  
