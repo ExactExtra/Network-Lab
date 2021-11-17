@@ -1,0 +1,128 @@
+FISH-1(config)#do sh run
+Building configuration...
+
+Current configuration : 1954 bytes
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname FISH-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+no ip icmp rate-limit unreachable
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+redundancy
+!
+no cdp log mismatch duplex
+!
+ip tcp synwait-time 5
+!
+!
+!
+!
+interface Loopback9
+ ip address 10.90.1.1 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description Link to FROG-1 Gi0/0
+ ip address 10.1.1.1 255.255.255.252
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ description Link to FISH-2 Gi0/1
+ ip address 192.168.1.1 255.255.255.252
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ description Link to T-WAN-1 Gi0/0
+ ip address 10.40.1.2 255.255.255.252
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router bgp 100
+ bgp log-neighbor-changes
+ network 10.40.1.0 mask 255.255.255.252
+ neighbor 1.1.1.1 remote-as 5000
+ neighbor 1.1.1.1 ebgp-multihop 2
+ neighbor 1.1.1.1 update-source Loopback9
+ neighbor 10.10.10.10 remote-as 9000
+ neighbor 10.10.10.10 ebgp-multihop 2
+ neighbor 10.10.10.10 update-source Loopback9
+ neighbor 10.90.2.2 remote-as 100
+ neighbor 10.90.2.2 update-source Loopback9
+ neighbor 10.90.2.2 next-hop-self
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+ip route 1.1.1.1 255.255.255.255 10.40.1.1
+ip route 10.10.10.10 255.255.255.255 10.1.1.2
+ip route 10.90.2.2 255.255.255.255 192.168.1.2
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end
