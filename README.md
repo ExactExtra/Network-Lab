@@ -1,11 +1,11 @@
 # Network-Lab
 
 ### Objectives  
-1. Ping successfully from ubuntu docker to IOU1 and IOU2  
-2. Add more hosts eventually  
-3. Input firewall rules and test firewall  
-4. Create redundancy between devices under AS5000  
-5. Add more services above AS4896 e.g. netbox, automation, syslog etc.
+- [x] Ping successfully from ubuntu docker to IOU1 and IOU2  
+- [ ] Add more hosts eventually  
+- [ ] Input firewall rules and test firewall  
+- [ ] Create redundancy between devices under AS5000  
+- [ ] Add more services above AS4896 e.g. netbox, automation, syslog etc.
 
 ### GNS3 Lab setup
 
