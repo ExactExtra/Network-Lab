@@ -14,7 +14,7 @@ Devices:
 2x Cisco IOSvL2 as L3 switches  
 2x Cisco IOU L2 as L2 switches  
 1x Cisco IOU L3 as "Internet"  
-2x PA-VM as firewalls  
+1x PA-VM as firewall because need license to HA. gg 
 
 
 ## Network Diagram  
