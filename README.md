@@ -16,8 +16,11 @@ Devices:
 1x Cisco IOU L3 as "Internet"  
 1x PA-VM as firewall because need license to HA. gg 
 
-### Solution Overview
-to be added.
-
 ## Network Diagram  
 ![alt text](https://github.com/fawnorange/Network-Lab/blob/main/Network%20Lab%20v1.png)
+
+## Solution Overview  
+CPS-1 and CPS-2 will be using LACP between each other since only 4500 and 6500 have VSS  
+eBGP with AS4896 towards FISH-2 and FROG-2 to simulate 2 different MPLS  
+
+![alt text](https://github.com/fawnorange/Network-Lab/blob/main/HQ%20compartment.png)  
