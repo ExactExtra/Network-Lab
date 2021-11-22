@@ -18,4 +18,4 @@ Devices:
 
 
 ## Network Diagram  
-![alt text](https://github.com/fawnorange/Network-Lab/blob/main/Network%20Lab%20diagram.png)
+![alt text](https://github.com/fawnorange/Network-Lab/blob/main/Network%20Lab%20v1.png)
