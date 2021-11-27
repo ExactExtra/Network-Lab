@@ -1,7 +1,8 @@
-# Network-Lab
+# Network-Lab  
+
+### WORK IN PROGRESS  
 
 ### Objectives  
-- WORK IN PROGRESS
 - [x] Ping successfully from ubuntu docker to IOU1 and IOU2  
 - [ ] Add more hosts eventually  
 - [ ] Input firewall rules and test firewall  
