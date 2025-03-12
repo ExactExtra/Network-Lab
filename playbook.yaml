@@ -1,0 +1,38 @@
+---
+- name: Run basic commands on remote devices
+  hosts: routers
+#  connection: network_cli
+#  become: yes
+#  become_method: enable ###enable mode/configure enable password
+
+#  vars:      ###already defined in inventory
+#  ansible_user: admin      ###ssh user
+#  ansible_ssh_pass: admin    ###ssh password
+#  ansible_become_pass: admin  ###enable password
+#  ansible_network_os: ios
+
+  tasks:
+    - name: Run show version on remote devices
+      cisco.ios.ios_command:
+        commands:
+          - term len 0
+          - show version
+          - sh ip int br | ex una
+          - show ip route
+          - sh ip ospf nei
+      register: output
+
+    - debug:
+        msg: "{{ output }}"
+
+    - name: save output to local directory
+      copy:
+#        content: "{{ output.stdout[0]}}"  ###only good for 1 command
+        content: "{{ output.stdout|join('\n') }}"
+        dest: "/home/labadmin/{{ inventory_hostname }}.txt"
+
+#    - name: Create a directory if it does not exist
+#      ansible.builtin.file:
+#        path: /home/labadmin
+#        state: directory
+#        mode: '0755'

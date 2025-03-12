@@ -1,0 +1,12 @@
+[routers]
+10.1.1.1
+10.2.2.2
+10.3.3.3
+
+[routers:vars]
+ansible_network_os=ios
+ansible_ssh_user=admin
+ansible_ssh_password=admin
+ansible_become_pass=admin
+ansible_connection=network_cli
+

@@ -1,0 +1,8 @@
+routers:
+ hosts:
+  new_server:
+   ansible_host: 10.1.1.1
+   ansible_user: router1
+   ansible_password: router1
+
+
